@@ -1,5 +1,6 @@
 import styles from "../styles/Home.module.scss";
-import {Button, BtnText} from "../components/Button/Button";
+import { Button, BtnText } from "../components/Button/Button";
+import Banner from "../components/Banner/Banner";
 
 export default function Home() {
   return (
@@ -35,7 +36,9 @@ export default function Home() {
 
           <div className={styles.row}>
             <div className={styles.col1Of2}>
-              <h3 className={`${styles.headingTertiary} ${styles.uMarginBottomSmall}`}>
+              <h3
+                className={`${styles.headingTertiary} ${styles.uMarginBottomSmall}`}
+              >
                 You are gonna fall in love with the books!
               </h3>
               <p className={styles.paragraph}>
@@ -45,7 +48,9 @@ export default function Home() {
                 inventore eveniet repellendus fuga facere eum?
               </p>
 
-              <h3 className={`${styles.headingTertiary} ${styles.uMarginBottomSmall}`}>
+              <h3
+                className={`${styles.headingTertiary} ${styles.uMarginBottomSmall}`}
+              >
                 Get all the new books whenever you want!
               </h3>
               <p className={styles.paragraph}>
@@ -57,7 +62,13 @@ export default function Home() {
 
               <BtnText href="/">Learn more</BtnText>
             </div>
-            <div className={styles.col1Of2}>image</div>
+            <div className={styles.col1Of2}>
+              <div className={styles.composition} >
+                <Banner src="img/little-women.jpeg" alt="little women" pho_id={styles.composition__photoP1} />
+                <Banner src="img/great-gatsby.jpeg" alt="great gatsby" pho_id={styles.composition__photoP2} />
+                <Banner src="img/jane-eyre.jpeg" alt="jane eyre" pho_id={styles.composition__photoP3} />
+              </div>
+            </div>
           </div>
         </section>
       </main>
