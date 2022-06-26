@@ -1,3 +1,7 @@
+@import "../../../styles/scss/abstracts/variables";
+@import "../../../styles/scss/base/typography";
+@import "../../../styles/scss/base/animations";
+
 .header {
     height: 95vh;
     background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.6), rgba($color-primary-dark, 0.6)), url(/img/header.jpeg);

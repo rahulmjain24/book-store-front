@@ -1,3 +1,17 @@
+@import "../../../styles/scss/abstracts/variables";
+@import "../../../styles/scss/base/utilities";
+
+@import "../../../styles/scss/abstracts/mixins";
+@import "../../../styles/scss/layout/grid";
+
+@import "../../../styles/scss/base/typography";
+
+.sectionStories {
+    padding: 15rem 0;
+    position: relative;
+    margin-top: -8.5rem;
+}
+
 .story {
     width: 75%;
     margin: 0 auto;

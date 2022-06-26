@@ -1,7 +1,7 @@
-import styles from "../../styles/Home.module.scss";
+import styles from "./Button.module.scss";
 import Link from "next/link";
 
-export function Button(props) {
+export function Btn(props) {
   return (
     <>
       <Link href={props.href}>
@@ -17,10 +17,18 @@ export function BtnText(props) {
   return (
     <>
       <Link href={props.href}>
-        <a className={styles.btnText}>
-          {props.children} &rarr;
-        </a>
+        <a className={styles.btnText}>{props.children} &rarr;</a>
       </Link>
+    </>
+  );
+}
+
+export function BtnSubmit(props) {
+  return (
+    <>
+      <button className={`${styles.btn} ${styles.btnBrown}`} type="submit">
+         {props.children}
+      </button>
     </>
   );
 }

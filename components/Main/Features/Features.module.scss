@@ -1,3 +1,22 @@
+@import "../../../styles/scss/abstracts/variables";
+@import "../../../styles/scss/base/utilities";
+
+@import "../../../styles/scss/abstracts/mixins";
+@import "../../../styles/scss/layout/grid";
+
+.sectionFeatures {
+    padding: 20rem 0;
+    background-image: linear-gradient(to right bottom,rgba($color-primary-light, 0.8),rgba($color-primary-dark,0.8)),url(/img/book-shelf.jpeg);
+    background-size: cover;
+    margin-top: -10rem;
+
+    transform: skewY(-7deg);
+
+    & > * {
+        transform: skewY(7deg);
+    }
+}
+
 .featureBox {
     background-color: rgba($color-white, .8);
     font-size: 1.5rem;
@@ -23,3 +42,4 @@
 
     }
 }
+

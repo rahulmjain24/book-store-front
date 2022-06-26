@@ -1,3 +1,11 @@
+@import "../../../styles/scss/abstracts/variables";
+@import "../../../styles/scss/base/utilities";
+
+@import "../../../styles/scss/abstracts/mixins";
+@import "../../../styles/scss/layout/grid";
+
+@import "../../../styles/scss/base/typography";
+
 .composition {
     position: relative;
 
@@ -30,5 +38,14 @@
             z-index: 20;
         }
     }
+}
+
+
+
+.sectionAbout {
+    background-color: #f7f7f7;
+    padding: 25rem 0;
+    margin-top: -20vh; 
+    height: 85vh;
 }
 

@@ -1,4 +1,38 @@
-.form {
+@import "../../../styles/scss/abstracts/variables";
+@import "../../../styles/scss/base/utilities";
+
+@import "../../../styles/scss/abstracts/mixins";
+@import "../../../styles/scss/layout/grid";
+
+@import "../../../styles/scss/base/typography";
+
+.sectionSign {
+    padding: 15rem 0;
+    background-image: linear-gradient(
+        to right bottom,
+        $color-primary-light,
+        $color-primary-dark);
+  }
+  
+  
+  .sign {
+    background-image: linear-gradient(
+        105deg,
+        rgba($color-white, .9) 0%,
+        rgba($color-white, .9) 50%,
+        transparent 50%),
+        url(../../../public/img/book-shelf.jpeg);
+    background-size: cover;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba($color-black,.2);
+  
+    &__form {
+        width: 40%;
+        padding: 6rem;
+    }
+  }
+
+  .form {
     &__group:not(:last-child) {
         margin-bottom: 2rem;
     }
