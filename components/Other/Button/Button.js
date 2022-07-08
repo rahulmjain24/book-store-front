@@ -32,3 +32,13 @@ export function BtnSubmit(props) {
     </>
   );
 }
+
+export function BtnBrown(props) {
+  return (
+    <>
+      <Link href={props.href}>
+        <a className={`${styles.btn} ${styles.btnBrown}`}>{props.children}</a>
+      </Link>
+    </>
+  )
+}

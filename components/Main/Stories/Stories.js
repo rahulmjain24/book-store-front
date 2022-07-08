@@ -5,7 +5,7 @@ import { BtnText } from "../../Other/Button/Button";
 export function Stories() {
     return (
         <section className={styles.sectionStories}>
-          <BgVideo UrlMp4="video/video.mp4" />
+          <BgVideo UrlMp4="/video/video.mp4" />
 
           <div className={`${styles.uCenterText} ${styles.uMarginBottomBig}`}>
             <h2 className={styles.headingSecondary}>
@@ -15,7 +15,7 @@ export function Stories() {
 
           <div className={styles.row}>
             <Story
-              imgSrc="img/nat-8.jpg"
+              imgSrc="/img/nat-8.jpg"
               heading="Got all my favorite books in 1 place"
             >
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo,
@@ -25,7 +25,7 @@ export function Stories() {
               adipisicing elit.
             </Story>
             <Story
-              imgSrc="img/nat-9.jpg"
+              imgSrc="/img/nat-9.jpg"
               heading="My favourite site to buy books online"
             >
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo,

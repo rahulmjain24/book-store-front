@@ -6,7 +6,7 @@ export default function Header() {
         <header className={styles.header}>
         <div className={styles.header__logoBox}>
           <img
-            src={"/img/logoWhite.png"}
+            src="/img/logoWhite.png"
             alt="Logo"
             className={styles.header__logo}
             layout="fill"
@@ -20,7 +20,7 @@ export default function Header() {
               get books at your doorstep
             </span>
           </h1>
-          <Btn href={"/"}>Browse Books</Btn>
+          <Btn href={"/books"}>Browse Books</Btn>
         </div>
       </header>
     );

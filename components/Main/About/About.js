@@ -36,22 +36,22 @@ export function About() {
                 inventore eveniet repellendus fuga facere eum?
               </p>
 
-              <BtnText href="/">Learn more</BtnText>
+              <BtnText href="/books">Show more</BtnText>
             </div>
             <div className={styles.col1Of2}>
               <div className={styles.composition}>
                 <Banner
-                  src="img/little-women.jpeg"
+                  src="/img/little-women.jpeg"
                   alt="little women"
                   pho_id={styles.composition__photoP1}
                 />
                 <Banner
-                  src="img/great-gatsby.jpeg"
+                  src="/img/great-gatsby.jpeg"
                   alt="great gatsby"
                   pho_id={styles.composition__photoP2}
                 />
                 <Banner
-                  src="img/jane-eyre.jpeg"
+                  src="/img/jane-eyre.jpeg"
                   alt="jane eyre"
                   pho_id={styles.composition__photoP3}
                 />

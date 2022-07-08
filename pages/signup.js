@@ -4,7 +4,7 @@ import { BtnSubmit } from "../components/Other/Button/Button";
 
 export default function Signup() {
   return (
-    <Form>
+    <Form heading="Signup">
       <InputText
         type="text"
         placeholder="Full Name"
