@@ -17,6 +17,8 @@ export default function Books(props) {
   const [data, setData] = useState([]);
   const [totalPages, setTotalPages] = useState();
   const [currentPage, setPage] = useState(0);
+  const [quer,setQuery] = useState("")
+  const [sear,setSear] = useState([])
 
   useEffect(() => {
     const wh = fetch(`http://localhost:8080/api/books?page=${currentPage}`);
@@ -26,14 +28,32 @@ export default function Books(props) {
         setTotalPages(d.totalPages);
       })
       .catch((err) => console.log(err));
-  }, [currentPage]);
+
+      async function search(query) {
+        let data = []
+        data = await (await (await fetch(`http://localhost:8080/api/books?title=${query}`)).json());
+        setSear([...data]);
+      }
+      search(quer)
+
+  }, [currentPage, quer]);
 
   return (
-    <BookLayout>
+    <BookLayout change={e => {
+      setQuery(e.target.value)
+      }
+    }>
       <div className={styles.books}>
-        {console.log(data)}
-
-        {data.map((d) => (
+        {console.log(quer)}
+        {quer =="" ? data.map((d) => (
+          <Card
+            title={d.title}
+            year={d.year}
+            id={d.id}
+            author={d.author}
+            genre={d.genre}
+          />
+        )) : sear.map(d => (
           <Card
             title={d.title}
             year={d.year}
@@ -42,6 +62,7 @@ export default function Books(props) {
             genre={d.genre}
           />
         ))}
+        {sear.length == 0 ? <h1>No results found!</h1> : ""} 
       </div>
       <Page last={totalPages}>
         {pagination(totalPages).map((i) => (

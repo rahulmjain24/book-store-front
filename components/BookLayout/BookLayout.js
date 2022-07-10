@@ -17,9 +17,10 @@ export default function BookLayout(props) {
 
         <form action="#" className={styles.search}>
           <input
+            onChange={e => props.change(e)}
             type="text"
             className={styles.search__input}
-            placeholder="Search hotels"
+            placeholder="Search books"
           />
           <button className={styles.search__button}>
             <svg className={styles.search__icon}>
