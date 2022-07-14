@@ -2,38 +2,54 @@ import { InputText, InputRadio, Wrapper } from "../components/Main/Form/Form";
 import Form from "../components/Main/Form/Form";
 import { BtnSubmit } from "../components/Other/Button/Button";
 import { useEffect, useState } from "react";
+import Nav from "../components/Other/Nav/Nav";
+import { URL } from "../setUrl";
+import axios from "axios";
 
 export default function Signup() {
+  
+
+
+
   async function postData(url, data) {
-    // Default options are marked with *
-    const response = await fetch(url, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, *cors, same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      headers: {
-        "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      redirect: "follow", // manual, *follow, error
-      referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify(data), // body data type must match "Content-Type" header
-    });
-    return response.json(); // parses JSON response into native JavaScript objects
+    axios({
+      method:"post",
+      url:url,
+      data:data,
+      config: { headers: {'Content-Type': 'application/json'}}
+    }).then(res => {
+      //authentication success...
+      console.log(res.json())
+  })
+  .catch(error=>{
+      var errResp = error.response;
+      console.log(errResp)
+  })
+
+  //   // Default options are marked with *
+  //   const response = await fetch(url, {
+  //     method: "POST", // *GET, POST, PUT, DELETE, etc.
+  //     mode: "no-cors", // no-cors, *cors, same-origin
+  //     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       // 'Content-Type': 'application/x-www-form-urlencoded',
+  //     },
+  //     redirect: "follow", // manual, *follow, error
+  //     referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+  //     body: JSON.stringify(data), // body data type must match "Content-Type" header
+  //   });
+  //   return response.json(); // parses JSON response into native JavaScript objects
   }
 
-  const [data, setData] = useState({
-    fullName: "",
-    username: "",
-    email: "",
-    password: "",
-    gender: "",
-  });
-
   return (
+    <>
+    <Nav></Nav>
     <Form
       heading="Signup"
-      submit={(e) => {
-        postData(`http://localhost:8080/api/users`, {
+      submitForm={(e) => {
+        e.preventDefault()
+        postData(`${URL}/api/users`, {
           fullName: e.target.name.value,
           username: e.target.username.value,
           email: e.target.email.value,
@@ -41,12 +57,11 @@ export default function Signup() {
           gender: e.target.gender.value,
         })
           .then((data) => {
-            console.log(data); // JSON data parsed by `data.json()` call
+            console.log(data.json()); // JSON data parsed by `data.json()` call
           })
           .catch((err) => console.log(err));
       }}
     >
-      {console.log(data)}
       <InputText
         type="text"
         placeholder="Full Name"
@@ -87,5 +102,6 @@ export default function Signup() {
         </div>
       </Wrapper>
     </Form>
+    </>
   );
 }

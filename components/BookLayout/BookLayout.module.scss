@@ -7,7 +7,7 @@
     border-bottom: var(--line);
 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 
     @media only screen and (max-width: $bp-smallest) {
@@ -140,8 +140,8 @@
         background-color: var(--color-primary);
         color: #fff;
         position: absolute;
-        top: 1.5rem;
-        right: 1.1rem;
+        top: -.5rem;
+        right: -.9rem;
 
         display: flex;
         justify-content: center;

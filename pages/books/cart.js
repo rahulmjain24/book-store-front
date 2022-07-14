@@ -2,8 +2,8 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import BookLayout from "../../components/BookLayout/BookLayout";
 import { BtnBrown } from "../../components/Other/Button/Button";
-import styles from "./Books.module.scss";
 import Card from "../../components/Card/Card";
+import styles from "./Books.module.scss"
 import { URL } from "../../setUrl";
 
 export default function Book() {
@@ -11,17 +11,18 @@ export default function Book() {
   const [data, setData] = useState({});
   const [quer, setQuery] = useState("");
   const [sear, setSear] = useState([]);
-  const [bookAdd,setBookAdd] = useState(0)
+  const [user,setUser] = useState([]);
+  const [bookDel, setBookDel] = useState(0)
 
   function setId(id = router.query.id) {
     return id;
   }
 
-  async function addBook(id) {
+  async function delBook(id) {
     console.log(id);
     let data = await (
       await fetch(`${URL}/api/users?bookId=${id}`, {
-        method: "put",
+        method: "delete",
       })
     ).json();
     console.log(data);
@@ -29,7 +30,7 @@ export default function Book() {
 
   // console.log(router)
   useEffect(() => {
-    fetch(`${URL}/api/books/${router.query.id}`)
+    fetch(`${URL}/api/books/${router.query.id ? "" : router.query.id}`)
       .then((d) => d.json())
       .then((d) => {
         setData({
@@ -48,18 +49,30 @@ export default function Book() {
         await fetch(`${URL}/api/books?title=${query}`)
       ).json();
       console.log(user);
-      if(data) {
+      if(data != undefined) {
         setSear([...data]);
       } else {
         setSear([])
       }
     }
     search(quer);
+
+    fetch(`${URL}/api/users/user`)
+        .then(data => data.json())
+        .then(da => {
+            console.log(da)
+            if(da) {
+              setUser([ ...da.books ]);
+            } else {
+              setUser([])
+            }
+        })
+        .catch(err => console.log(err))
   }, [router, quer]);
 
   return (
     <BookLayout
-      book={bookAdd}
+      del={bookDel}
       change={(e) => {
         if (setId() != router.query.id) {
           console.log(id);
@@ -69,26 +82,29 @@ export default function Book() {
       }}
     >
       {console.log(quer)}
-      {quer == "" ? (
+      {quer == "" ? user.map(d => 
         <div className={styles.book}>
           <div className={styles.detail}>
-            <img src={`/img/books/${data.id}.jpeg`} />
+            <img src={`/img/books/${d.id}.jpeg`} />
             {console.log(data)}
             <div class={styles.description}>
-              <h3>{data.title}</h3>
+              <h3>{d.title}</h3>
               <h4 className={styles.heading4}>
-                by {data.firstName} {data.lastName}
+                by {d.author.firstName} {d.author.lastName}
               </h4>
-              <h4 className={styles.heading4}>{data.year}</h4>
-              <h4 className={styles.heading4}>{data.genre}</h4>
-              <p class={styles.paragraph}>{data.synopsis}</p>
+              <h4 className={styles.heading4}>{d.year}</h4>
+              <h4 className={styles.heading4}>{d.genre.genre}</h4>
               <div
                 onClick={() => {
-                  setBookAdd((prevState) => prevState + 1)
-                  addBook(router.query.id);
+                    console.log(d.id)
+                    const cartData = [...user]
+                    delBook(d.id);
+                    searchData.splice(cartData.indexOf(d), 1)
+                    setSear([...cartData])
+                    setBookDel((prevState) => prevState + 1)
                 }}
               >
-                <BtnBrown href="/books">Add Book</BtnBrown>
+                <BtnBrown href="#">Remove Book</BtnBrown>
               </div>
             </div>
           </div>
@@ -111,7 +127,7 @@ export default function Book() {
           ))}
         </div>
       )}
-      {sear == [] && quer != "" ? <h1>No results found!</h1> : ""}
+      {sear == [] ? <h1>No results found!</h1> : ""}
     </BookLayout>
   );
 }

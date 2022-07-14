@@ -2,8 +2,8 @@ import Card from "../../components/Card/Card";
 import Page, { PageNo } from "../../components/Other/Pagination/Page";
 import styles from "./Books.module.scss";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import BookLayout from "../../components/BookLayout/BookLayout";
+import { URL } from "../../setUrl";
 
 export default function Books(props) {
   function pagination(total) {
@@ -21,9 +21,10 @@ export default function Books(props) {
   const [sear,setSear] = useState([])
 
   useEffect(() => {
-    const wh = fetch(`http://localhost:8080/api/books?page=${currentPage}`);
+    const wh = fetch(`${URL}/api/books?page=${currentPage}`);
     wh.then((data) => data.json())
       .then((d) => {
+        console.log(d)
         setData([...d.content]);
         setTotalPages(d.totalPages);
       })
@@ -31,8 +32,15 @@ export default function Books(props) {
 
       async function search(query) {
         let data = []
-        data = await (await (await fetch(`http://localhost:8080/api/books?title=${query}`)).json());
-        setSear([...data]);
+        let user = {}
+        data = await (await (await fetch(`${URL}/api/books?title=${query}`)).json());
+        console.log(user)
+        if(data) {
+          setSear([...data]);
+        } else {
+          setSear([])
+        }
+        
       }
       search(quer)
 
@@ -44,9 +52,9 @@ export default function Books(props) {
       }
     }>
       <div className={styles.books}>
-        {console.log(quer)}
         {quer =="" ? data.map((d) => (
           <Card
+            key={d.id}
             title={d.title}
             year={d.year}
             id={d.id}
@@ -55,6 +63,7 @@ export default function Books(props) {
           />
         )) : sear.map(d => (
           <Card
+            key={d.id}
             title={d.title}
             year={d.year}
             id={d.id}
@@ -62,7 +71,7 @@ export default function Books(props) {
             genre={d.genre}
           />
         ))}
-        {sear.length == 0 ? <h1>No results found!</h1> : ""} 
+        {sear == [] && quer != "" ? <h1>No results found!</h1> : ""} 
       </div>
       <Page last={totalPages}>
         {pagination(totalPages).map((i) => (

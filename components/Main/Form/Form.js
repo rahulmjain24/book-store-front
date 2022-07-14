@@ -7,31 +7,12 @@ export default function Form(props) {
       <div className={styles.row}>
         <div className={styles.sign}>
           <div className={styles.sign__form}>
-            <form action={props.action} method="POST" className={styles.form} onSubmit={(e) =>{ 
-              props.submit(e)}}>
+            <form action={props.action} method="post" className={styles.form} onSubmit={(e) =>
+              props.submitForm(e)}>
               <div className={styles.uMarginBottomMedium}>
                 <h2 className={styles.headingSecondary}>{props.heading}</h2>
               </div>
               {props.children}
-              {/* <InputText
-                type="text"
-                placeholder="Full Name"
-                id="name"
-                required={true}
-              />
-              <InputText
-                type="email"
-                placeholder="Email address"
-                id="email"
-                required={true}
-              />
-              <InputText
-                type="password"
-                placeholder="Password"
-                id="password"
-                required={true}
-              /> */}
-              
             </form>
           </div>
         </div>
